@@ -1,0 +1,53 @@
+{
+  "name": "yarn-berry-typescript-monorepo",
+  "version": "0.0.1",
+  "description": "Node NPM packages",
+  "author": "Luke Shay",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "plugins/*"
+  ],
+  "scripts": {
+    "new-package": "ts-node packages/scripts/src/new-package.ts $@ ",
+    "postnew-package": "yarn install && yarn",
+    "setup": "yarn policies set-version berry && yarn set version berry",
+    "postsetup": "yarn install && yarn"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^9.1.2",
+    "@commitlint/config-conventional": "^9.1.2",
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "eslint": "^7.8.1",
+    "eslint-config-airbnb-typescript": "^10.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.4.2",
+    "jest-junit": "^11.1.0",
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.11",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.27.2",
+    "ts-jest": "^26.3.0",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.2"
+  },
+  "husky": {
+    "hooks": {
+      "pre-stage": "yarn format",
+      "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
