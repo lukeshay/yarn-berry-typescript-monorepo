@@ -1,1 +1,2 @@
-module.exports = require('../../.eslintrc')
+extends:
+  - '../../.eslintrc.ts.yaml'
